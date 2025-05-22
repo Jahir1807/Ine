@@ -131,6 +131,14 @@ app.post('/personas', (req, res) => {
   })();
 });
 
+app.get('/personas/curps', (req, res) => {
+  const sql = `SELECT curp FROM persona`;
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).send(err);
+    res.json(results);
+  });
+});
+
 // Endpoint: Eliminar persona por ID
 app.delete('/personas/:id', (req, res) => {
   const id = req.params.id;
